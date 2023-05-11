@@ -11,12 +11,13 @@
 <button onclick="send('PC')">the pc survived with a large catalog of games</button>
 
 <script>
+    let key = 0;
 
     function send(name) {
-        localStorage.setItem('best-console', JSON.stringify({name}));
+        key = key + 1;
+        localStorage.setItem('best-console', JSON.stringify({name, key: key}));
     }
 
 </script>
-
 </body>
 </html>
