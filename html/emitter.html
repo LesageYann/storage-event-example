@@ -12,8 +12,11 @@
 
 <script>
 
+    let key = 0;
+
     function send(name) {
-        localStorage.setItem('best-console', JSON.stringify({name}));
+        key = key + 1;
+        localStorage.setItem('best-console', JSON.stringify({name, key}));
     }
 
 </script>
