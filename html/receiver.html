@@ -10,5 +10,16 @@
 <div> the n64 is best gaming platform - <span id="N64">0</span> votes</div>
 <div> the pc is best gaming platform - <span id="PC">0</span> votes</div>
 
+<script>
+    let counters = new Map([["PS1", 0],["N64", 0], ["PC", 0]]);
+    window.addEventListener("storage", () => {
+        let name = JSON.parse(window.localStorage.getItem("best-console"))?.name;
+        let count = counters.get(name) + 1;
+        counters.set(name, count);
+        document.getElementById(name).innerText = count;
+        window.localStorage.setItem("best-console", JSON.stringify({name, validatedAt: new Date() }));
+    });
+</script>
+
 </body>
 </html>
