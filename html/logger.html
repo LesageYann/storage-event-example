@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Logger page</title>
+</head>
+<body>
+<h1>Logger page</h1>
+
+<div id="displayer"></div>
+<script>
+    window.addEventListener("storage", (event) => {
+        const newP = document.createElement("p");
+        let newContent
+        switch (event.key) {
+            case "best-console":
+                const name = JSON.parse(window.localStorage.getItem("best-console"))?.name;
+                newContent = document.createTextNode("new vote for " + name);
+                window.localStorage.setItem("best-console", JSON.stringify({name, loggedAt: new Date() }));
+                break;
+            case "reset-vote":
+                newContent = document.createTextNode("Votes are reset !");
+                window.localStorage.setItem("reset-vote", JSON.stringify({loggedAt: new Date() }));
+        }
+        newP.appendChild(newContent);
+        document.getElementById("displayer").appendChild(newP);
+    });
+</script>
+</body>
+</html>
