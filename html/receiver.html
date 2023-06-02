@@ -12,12 +12,28 @@
 
 <script>
     let counters = new Map([["PS1", 0],["N64", 0], ["PC", 0]]);
-    window.addEventListener("storage", () => {
+
+    function vote() {
         let name = JSON.parse(window.localStorage.getItem("best-console"))?.name;
         let count = counters.get(name) + 1;
         counters.set(name, count);
         document.getElementById(name).innerText = count;
         window.localStorage.setItem("best-console", JSON.stringify({name, validatedAt: new Date() }));
+    }
+
+    function reset() {
+        counters = new Map([["PS1", 0],["N64", 0], ["PC", 0]]);
+        ["PS1", "N64", "PC"].forEach(name => document.getElementById(name).innerText = "0");
+    }
+
+    window.addEventListener("storage", (event) => {
+        switch (event.key) {
+            case "best-console":
+                vote();
+                break;
+            case "reset-vote":
+                reset()
+        }
     });
 </script>
 

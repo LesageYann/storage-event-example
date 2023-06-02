@@ -9,6 +9,7 @@
 <button onclick="send('PS1')">PS1 is the better console</button>
 <button onclick="send('N64')">N64 is have the better games</button>
 <button onclick="send('PC')">the pc survived with a large catalog of games</button>
+<button onclick="reset()">reset</button>
 
 <script>
 
@@ -17,6 +18,10 @@
     function send(name) {
         key = key + 1;
         localStorage.setItem('best-console', JSON.stringify({name, key}));
+    }
+
+    function reset() {
+        localStorage.setItem('reset-vote', key)
     }
 
 </script>
