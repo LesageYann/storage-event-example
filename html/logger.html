@@ -13,7 +13,11 @@
         let newContent
         switch (event.key) {
             case "best-console":
-                const name = JSON.parse(window.localStorage.getItem("best-console"))?.name;
+                const content = JSON.parse(window.localStorage.getItem("best-console"))
+                if(!content?.key) {
+                    return
+                }
+                const name = content?.name;
                 newContent = document.createTextNode("new vote for " + name);
                 window.localStorage.setItem("best-console", JSON.stringify({name, loggedAt: new Date() }));
                 break;

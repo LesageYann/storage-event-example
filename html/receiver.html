@@ -14,7 +14,11 @@
     let counters = new Map([["PS1", 0],["N64", 0], ["PC", 0]]);
 
     function vote() {
-        let name = JSON.parse(window.localStorage.getItem("best-console"))?.name;
+        const content = JSON.parse(window.localStorage.getItem("best-console"))
+        if(!content?.key) {
+            return
+        }
+        const name = content?.name;
         let count = counters.get(name) + 1;
         counters.set(name, count);
         document.getElementById(name).innerText = count;
